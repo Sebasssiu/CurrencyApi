@@ -1,9 +1,19 @@
 ## Guide to start
 
+## Requirements
+1. Have pip installed
+2. Have version 3.9.1 of python installed
+
 ### Terminal
 
 Open the terminal, then search for the downloaded directory with "cd".
 Make sure in that folder is the manage.py file.
+
+### `python -m venv venv`
+Creates a virtual enviroment to download libraies used in the project.
+
+### `venv\Scripts\activate`
+Starts the virtual enviroment.
 
 ### `pip install -r requirements.txt`
 
