@@ -83,10 +83,15 @@ WSGI_APPLICATION = 'vana.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd7fpr4f9ujpadp',
+        'USER': 'xhwavmwvahyldm',
+        'PASSWORD': 'be55af1945691fca4164f0bfcdd68103fa269f63df0fad8927aaa9feb468a2b2',
+        'HOST': 'ec2-3-233-43-103.compute-1.amazonaws.com',
+        'PORT': '5432'
     }
 }
+
 
 
 # Password validation
