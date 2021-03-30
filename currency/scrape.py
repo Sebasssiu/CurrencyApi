@@ -45,24 +45,6 @@ currency: the evaluated coin either USD or EU
 """
 
 
-"""def exchange_rate_comparison(date1, date2, currency):
-    currency_rate_date1 = exchange_rate(date1, currency)
-    currency_rate_date2 = exchange_rate(date2, currency)
-    if currency_rate_date1['coin'] != 'NaN' and currency_rate_date2['coin'] != 'NaN':
-        sum_currency_rate = Decimal(currency_rate_date1['exchangeRate']) + Decimal(currency_rate_date2['exchangeRate'])
-        mean_currency_rate = sum_currency_rate / 2
-        return {
-            'mean': mean_currency_rate,
-            'max': max(Decimal(currency_rate_date1['exchangeRate']), Decimal(currency_rate_date2['exchangeRate'])),
-            'min': min(Decimal(currency_rate_date1['exchangeRate']), Decimal(currency_rate_date2['exchangeRate']))
-        }
-    return {
-        'mean': 'NaN',
-        'max': 'NaN',
-        'min': 'NaN'
-    }"""
-
-
 def exchange_rate_comparison(date1, date2, currency):
     date1 = date1.split("-")
     date2 = date2.split("-")
