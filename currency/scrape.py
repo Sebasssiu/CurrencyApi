@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+from datetime import date, timedelta
 from decimal import Decimal
 
 """
@@ -44,7 +45,7 @@ currency: the evaluated coin either USD or EU
 """
 
 
-def exchange_rate_comparison(date1, date2, currency):
+"""def exchange_rate_comparison(date1, date2, currency):
     currency_rate_date1 = exchange_rate(date1, currency)
     currency_rate_date2 = exchange_rate(date2, currency)
     if currency_rate_date1['coin'] != 'NaN' and currency_rate_date2['coin'] != 'NaN':
@@ -59,4 +60,27 @@ def exchange_rate_comparison(date1, date2, currency):
         'mean': 'NaN',
         'max': 'NaN',
         'min': 'NaN'
+    }"""
+
+
+def exchange_rate_comparison(date1, date2, currency):
+    date1 = date1.split("-")
+    date2 = date2.split("-")
+    date_start = date(int(date1[0]), int(date1[1]), int(date1[2]))
+    date_end = date(int(date2[0]), int(date2[1]), int(date2[2]))
+    days = (date_end - date_start).days
+    currency_sum = 0
+    min_value = max_value = Decimal(exchange_rate(str(date_start), currency)['exchangeRate'])
+    for i in range(days):
+        actual_currency_rate = exchange_rate(str(date_start), currency)['exchangeRate']
+        if actual_currency_rate != 'NaN':
+            actual_currency_rate = Decimal(actual_currency_rate)
+            currency_sum += actual_currency_rate
+            max_value = max(actual_currency_rate, max_value)
+            min_value = min(actual_currency_rate, min_value)
+        date_start += timedelta(days=1)
+    return {
+        'mean': currency_sum/days,
+        'min': min_value,
+        'max': max_value
     }
