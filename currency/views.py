@@ -4,7 +4,6 @@ import json
 
 
 def rate_exchange(request):
-    print(request.body)
     if request.method == 'POST':
         data = json.loads(request.body.decode("utf-8"))
         return JsonResponse(
