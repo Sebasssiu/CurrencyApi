@@ -26,7 +26,7 @@ SECRET_KEY = 'nb9iw0jr!st^ao#7r22m7#nq4l9!dg!chz$^9sh@4l521-3)y$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://vana-currencyapp.herokuapp.com/']
+ALLOWED_HOSTS = ['vana-currencyapp.herokuapp.com']
 
 
 # Application definition
