@@ -1,15 +1,16 @@
-from django.shortcuts import render
 from django.http import JsonResponse
 from .scrape import *
-# Create your views here.
+import json
 
 
 def rate_exchange(request):
+    print(request.body)
     if request.method == 'POST':
+        data = json.loads(request.body.decode("utf-8"))
         return JsonResponse(
             exchange_rate(
-                request.POST.get('date'),
-                request.POST.get('currency')
+                data.get('date'),
+                data.get('currency')
             ),
             status=200
         )
@@ -18,11 +19,12 @@ def rate_exchange(request):
 
 def rate_exchange_comparison(request):
     if request.method == 'POST':
+        data = json.loads(request.body.decode("utf-8"))
         return JsonResponse(
             exchange_rate_comparison(
-                request.POST.get('date1'),
-                request.POST.get('date2'),
-                request.POST.get('currency')
+                data.get('date1'),
+                data.get('date2'),
+                data.get('currency')
             ),
             status=200
         )

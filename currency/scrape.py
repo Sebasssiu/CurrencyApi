@@ -7,20 +7,20 @@ Desc: this function scrapes banguat
 website in seek of currency exchange for a 
 particular coin in a particular date.
 @params
-date: date of currency exchange rate format= MM-DD-YYYY
+date: date of currency exchange rate format= YYYY-MM-DD
 currency: the evaluated coin either USD or EU
 """
 
 
 def exchange_rate(date, currency):
     date = date.split("-")
-    URL = f'https://www.banguat.gob.gt/cambio/historico.asp?ktipo=3&kdia={date[1]}&kmes={date[0]}&kanio={date[2]}&submit1=Consultar'
+    URL = f'https://www.banguat.gob.gt/cambio/historico.asp?ktipo=3&kdia={date[2]}&kmes={date[1]}&kanio={date[0]}&submit1=Consultar'
     page = requests.get(URL)
     soup = BeautifulSoup(page.content, 'html.parser')
     html_elements = soup.findAll('tr')
+    currency = 'DólaresdeEE.UU.**' if currency == 'USD' else 'Euro'
     for position in range(len(html_elements)):
         currency_data = html_elements[position].text.split('\n')
-        currency = 'DólaresdeEE.UU.**' if currency == 'USD' else 'Euro'
         if len(currency_data) == 4 and currency_data[1].replace(' ', '') == currency:
             response = {
                 'coin': currency_data[1],
